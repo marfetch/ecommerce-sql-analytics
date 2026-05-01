@@ -110,7 +110,11 @@ ORDER BY total_revenue DESC;
 
 
 -- 8. RFM-сегментация клиентов
-WITH rfm AS (
+WITH analysis_date AS (
+    SELECT MAX(order_date)::DATE AS dt
+    FROM orders
+),
+rfm AS (
     SELECT
         c.customer_id,
         c.first_name || ' ' || c.last_name AS customer_name,
@@ -129,12 +133,13 @@ WITH rfm AS (
 ),
 rfm_scores AS (
     SELECT
-        *,
-        DATE '2024-09-30' - last_order_date AS recency_days,
-        NTILE(3) OVER (ORDER BY DATE '2024-08-31' - last_order_date DESC) AS recency_score,
-        NTILE(3) OVER (ORDER BY frequency ASC) AS frequency_score,
-        NTILE(3) OVER (ORDER BY monetary ASC) AS monetary_score
-    FROM rfm
+        r.*,
+        a.dt - r.last_order_date AS recency_days,
+        NTILE(3) OVER (ORDER BY a.dt - r.last_order_date DESC) AS recency_score,
+        NTILE(3) OVER (ORDER BY r.frequency ASC) AS frequency_score,
+        NTILE(3) OVER (ORDER BY r.monetary ASC) AS monetary_score
+    FROM rfm r
+    CROSS JOIN analysis_date a
 )
 SELECT
     customer_id,
