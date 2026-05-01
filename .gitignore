@@ -1,0 +1,32 @@
+# System files
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# DBeaver
+.dbeaver/
+.metadata/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+
+# Environment
+.env
+.venv/
+venv/
+
+# Python cache, если позже добавишь Python
+__pycache__/
+*.pyc
+
+# Database dumps
+*.dump
+*.backup
+*.sql.gz
