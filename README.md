@@ -179,7 +179,7 @@ psql -d ecommerce_sql_analytics -f sql/09_data_quality_checks.sql
 - `05_delivery_analysis.md` — доставка и клиентский опыт;
 - `final_business_report.md` — итоговый бизнес-отчет.
 
-Фактические значения метрик нужно вставить в отчеты после выполнения запросов из `sql/08_analytics_queries.sql`.
+Фактические значения метрик рассчитаны с помощью запросов из `sql/08_analytics_queries.sql` и отражены в отчетах папки `results`
 
 ## Проверки качества данных
 
