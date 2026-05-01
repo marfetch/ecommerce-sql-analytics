@@ -1,4 +1,4 @@
--- 05_analytics_queries.sql
+-- 08_analytics_queries.sql
 -- Analytical SQL queries for ecommerce_analytics project
 
 
